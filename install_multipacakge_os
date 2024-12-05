@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Installation of pacakges on Redhat family
+      when: ansible_os_family == "RedHat"
+       yum: path={{item}} state=present
+       with_items:
+       -vim
+       -zip
+       -curl
+       -nginx
+
+        - name: Installation of pacakges on Debian family
+          when: ansible_os_family == "Debian"
+          yum: path={{item}} state=present
+          with_items:
+          -vim
+          -zip
+          -curl
+          -nginx
+
